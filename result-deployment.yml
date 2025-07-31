@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-deployment
+  labels:
+    name: result-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      name: result
+      labels:
+        type: front-end
+        app: result
+    spec:
+      containers:
+        - name: result
+          image: toninopons/voting-result
+          ports:
+            - containerPort: 80

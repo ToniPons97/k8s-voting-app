@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-deployment
+  labels:
+    name: vote-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vote
+  template:
+    metadata:
+      name: vote
+      labels:
+        type: front-end
+        app: vote
+    spec:
+      containers:
+        - name: vote
+          image: toninopons/voting-vote
+          ports:
+            - containerPort: 80
